@@ -13,7 +13,11 @@ targets:
     type: application
     platform: macOS
     sources:
-      - MeetingRecap
+      - MeetingRecap/App
+      - MeetingRecap/Models
+      - MeetingRecap/Services
+      - MeetingRecap/UI
+      - MeetingRecap/Utilities
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: dev.meetingrecap.app

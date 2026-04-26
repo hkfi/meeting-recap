@@ -71,7 +71,6 @@
 		980FFE062DF7B00FA60B5310 /* MeetingRecap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingRecap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1439E5041333340B3FEEE8E /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		B4ECFFC193E1968E60A7546E /* CodexCLISummarizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexCLISummarizationService.swift; sourceTree = "<group>"; };
-		CE3E319CBE9E4BC0EAE5D9E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D46D34BBAC3C78F21EDD07FC /* ScreenCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCaptureService.swift; sourceTree = "<group>"; };
 		DBD209C371981A8A583B0ACA /* MeetingMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingMetadata.swift; sourceTree = "<group>"; };
 		E10E388E627C3DD640E80315 /* OllamaSummarizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OllamaSummarizationService.swift; sourceTree = "<group>"; };
@@ -135,7 +134,6 @@
 		B690C022375419117FB160AE /* MeetingRecap */ = {
 			isa = PBXGroup;
 			children = (
-				CE3E319CBE9E4BC0EAE5D9E6 /* Info.plist */,
 				54710E4B26E4EA4B72872C4A /* App */,
 				23117EDBCD3FA9E505F4153C /* Models */,
 				1ECDB8D17B0FDA9A672F49E4 /* Services */,
