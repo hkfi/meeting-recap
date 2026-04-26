@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to validate and build, with or without a leading v
+        required: true
+
+jobs:
+  build:
+    name: Build macOS app
+    runs-on: macos-14
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Resolve release version
+        id: version
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            raw_version="${{ github.event.release.tag_name }}"
+          else
+            raw_version="${{ inputs.version }}"
+          fi
+          version="${raw_version#v}"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "raw_version=$raw_version" >> "$GITHUB_OUTPUT"
+
+      - name: Validate app version matches GitHub release
+        run: scripts/verify-release-version.sh "${{ steps.version.outputs.raw_version }}"
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build
+        run: xcodebuild -project MeetingRecap.xcodeproj -scheme MeetingRecap -configuration Release -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO build
+
+      - name: Package app
+        run: |
+          app_path="build/DerivedData/Build/Products/Release/MeetingRecap.app"
+          ditto -c -k --keepParent "$app_path" "MeetingRecap-${{ steps.version.outputs.version }}.zip"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MeetingRecap-${{ steps.version.outputs.version }}
+          path: MeetingRecap-${{ steps.version.outputs.version }}.zip

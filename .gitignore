@@ -5,6 +5,7 @@ build/
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/
 *.xcodeproj/project.xcworkspace/xcuserdata/
+* 2.xcodeproj/
 
 # Local recordings and generated meeting artifacts
 Meeting Recap/

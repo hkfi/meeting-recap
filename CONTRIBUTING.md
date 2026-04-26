@@ -19,6 +19,16 @@ xcodebuild -project MeetingRecap.xcodeproj -scheme MeetingRecap -configuration D
 xcodebuild test -project MeetingRecap.xcodeproj -scheme MeetingRecap -destination 'platform=macOS'
 ```
 
+## Versioning
+
+Use the version helper before tagging a release:
+
+```bash
+scripts/set-version.sh 0.2.0 2
+```
+
+GitHub release tags should use `v<version>`, such as `v0.2.0`. The release workflow validates the tag against `VERSION` and the Xcode `MARKETING_VERSION`.
+
 ## Provider Contributions
 
 Provider implementations should:

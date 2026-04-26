@@ -51,6 +51,27 @@ xcodebuild test -project MeetingRecap.xcodeproj -scheme MeetingRecap -destinatio
 
 Open `MeetingRecap.xcodeproj` in Xcode for local development.
 
+## Versioning and GitHub Releases
+
+The app version is tracked in `VERSION` and mirrored into `project.yml` as `MARKETING_VERSION`. `Info.plist` reads `$(MARKETING_VERSION)`, so the built app exposes the same release version as GitHub.
+
+Update the app version with:
+
+```bash
+scripts/set-version.sh 0.2.0 2
+```
+
+The first argument is the release version. The optional second argument is the Xcode build number.
+
+For GitHub releases, create tags with a leading `v`, for example:
+
+```bash
+git tag v0.2.0
+git push origin v0.2.0
+```
+
+When a GitHub release is published, `.github/workflows/release.yml` reads the release tag, strips the leading `v`, and verifies it matches both `VERSION` and `MARKETING_VERSION` before building the app.
+
 ## Audio Conversion
 
 Meeting Recap detects `ffmpeg` in:
