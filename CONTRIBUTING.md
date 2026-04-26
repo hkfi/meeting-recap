@@ -17,6 +17,7 @@ Thanks for helping improve Meeting Recap.
 make build
 make test
 make run
+make smoke-launch
 make install
 ```
 
@@ -34,7 +35,7 @@ Publish a release with:
 make release VERSION=0.2.0
 ```
 
-The release workflow validates the tag against `VERSION` and the Xcode `MARKETING_VERSION`, then builds and ad-hoc signs the app using the same lightweight pattern as DailyPhotos.
+`make release` runs tests, builds locally, launches the built app, confirms it is running, and then pushes the tag. The release workflow validates the tag against `VERSION` and the Xcode `MARKETING_VERSION`, then builds and ad-hoc signs the app using the same lightweight pattern as DailyPhotos.
 
 ## Provider Contributions
 

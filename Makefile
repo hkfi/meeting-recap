@@ -1,4 +1,4 @@
-.PHONY: build install test run clean release
+.PHONY: build install test run smoke-launch clean release
 
 APP_NAME := MeetingRecap
 BUILD_DIR := .build
@@ -28,6 +28,9 @@ test:
 run: build
 	@open "$(BUILD_DIR)/$(APP_NAME).app"
 
+smoke-launch: build
+	@scripts/smoke-launch.sh "$(BUILD_DIR)/$(APP_NAME).app"
+
 clean:
 	@rm -rf $(BUILD_DIR) $(APP_NAME).xcodeproj
 	@echo "🧹 Cleaned build artifacts"
@@ -37,6 +40,9 @@ release:
 		echo "Usage: make release VERSION=0.2.0"; \
 		exit 1; \
 	fi
+	@$(MAKE) test
+	@./build.sh
+	@scripts/smoke-launch.sh "$(BUILD_DIR)/$(APP_NAME).app"
 	@scripts/verify-release-version.sh "v$(VERSION)"
 	@echo "🏷  Tagging v$(VERSION)..."
 	@git tag "v$(VERSION)"

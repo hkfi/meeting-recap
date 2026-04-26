@@ -48,6 +48,7 @@ make build    # Build only
 make test     # Run unit tests
 make run      # Build and launch
 make install  # Build and install to ~/Applications
+make smoke-launch # Build, launch, confirm the app process, then quit
 make clean    # Remove build artifacts
 ```
 
@@ -71,7 +72,7 @@ To publish a release:
 make release VERSION=0.2.0
 ```
 
-GitHub Actions builds the app, ad-hoc signs it, packages it with `ditto --sequesterRsrc --keepParent`, and creates a GitHub release with the zip attached.
+`make release` runs tests, builds locally, launches the built app, confirms the app process is running, and only then pushes the release tag. GitHub Actions builds the tagged app, ad-hoc signs it, packages it with `ditto --sequesterRsrc --keepParent`, and creates a GitHub release with the zip attached.
 
 ## Audio Conversion
 
