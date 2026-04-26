@@ -44,12 +44,14 @@ Local providers keep processing on your machine where possible. Cloud providers 
 ## Build
 
 ```bash
-xcodegen generate
-xcodebuild -project MeetingRecap.xcodeproj -scheme MeetingRecap -configuration Debug build
-xcodebuild test -project MeetingRecap.xcodeproj -scheme MeetingRecap -destination 'platform=macOS'
+make build    # Build only
+make test     # Run unit tests
+make run      # Build and launch
+make install  # Build and install to ~/Applications
+make clean    # Remove build artifacts
 ```
 
-Open `MeetingRecap.xcodeproj` in Xcode for local development.
+The build uses XcodeGen and Xcode, then ad-hoc signs the app with `CODE_SIGN_IDENTITY="-"`, matching the lightweight DailyPhotos release pattern. Open `MeetingRecap.xcodeproj` in Xcode for local development after running `xcodegen generate`.
 
 ## Versioning and GitHub Releases
 
@@ -63,31 +65,17 @@ scripts/set-version.sh 0.2.0 2
 
 The first argument is the release version. The optional second argument is the Xcode build number.
 
-For GitHub releases, create tags with a leading `v`, for example:
+To publish a release:
 
 ```bash
-git tag v0.2.0
-git push origin v0.2.0
+make release VERSION=0.2.0
 ```
 
-When a GitHub release is published, `.github/workflows/release.yml` reads the release tag, strips the leading `v`, and verifies it matches both `VERSION` and `MARKETING_VERSION` before building the app.
+GitHub Actions builds the app, ad-hoc signs it, packages it with `ditto --sequesterRsrc --keepParent`, and creates a GitHub release with the zip attached.
 
+### macOS Gatekeeper
 
-### Signed Downloads
-
-Public macOS downloads need Developer ID signing and Apple notarization. Without that, Gatekeeper may show "Apple could not verify this app is free of malware."
-
-Configure these GitHub Actions secrets before publishing a downloadable release:
-
-- `APPLE_DEVELOPER_ID_CERTIFICATE_BASE64`: base64-encoded `.p12` Developer ID Application certificate.
-- `APPLE_DEVELOPER_ID_CERTIFICATE_PASSWORD`: password for the `.p12` file.
-- `APPLE_BUILD_KEYCHAIN_PASSWORD`: temporary CI keychain password.
-- `APPLE_DEVELOPER_ID_APPLICATION`: signing identity, for example `Developer ID Application: Example, Inc. (TEAMID)`.
-- `APPLE_ID`: Apple ID used for notarization.
-- `APPLE_TEAM_ID`: Apple Developer Team ID.
-- `APPLE_APP_SPECIFIC_PASSWORD`: app-specific password for notarization.
-
-The release workflow signs with hardened runtime, submits the app to Apple notarization, staples the ticket, verifies Gatekeeper assessment, and uploads the notarized zip as a release asset. Unsigned workflow-dispatch builds are artifacts only and should not be attached to public releases.
+Meeting Recap follows the same distribution approach as DailyPhotos: it is ad-hoc signed, but not Developer ID notarized. macOS may still ask users to confirm first launch for an app downloaded from the internet. If needed, right-click `MeetingRecap.app` and choose Open, or use System Settings > Privacy & Security > Open Anyway.
 
 ## Audio Conversion
 

@@ -21,8 +21,9 @@ targets:
         PRODUCT_NAME: MeetingRecap
         INFOPLIST_FILE: MeetingRecap/Info.plist
         GENERATE_INFOPLIST_FILE: NO
-        MARKETING_VERSION: 0.1.0
-        CURRENT_PROJECT_VERSION: 1
+        CODE_SIGN_IDENTITY: "-"
+        MARKETING_VERSION: 0.1.1
+        CURRENT_PROJECT_VERSION: 2
   MeetingRecapTests:
     type: bundle.unit-test
     platform: macOS

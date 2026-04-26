@@ -14,9 +14,10 @@ Thanks for helping improve Meeting Recap.
 ## Development
 
 ```bash
-xcodegen generate
-xcodebuild -project MeetingRecap.xcodeproj -scheme MeetingRecap -configuration Debug build
-xcodebuild test -project MeetingRecap.xcodeproj -scheme MeetingRecap -destination 'platform=macOS'
+make build
+make test
+make run
+make install
 ```
 
 ## Versioning
@@ -27,9 +28,13 @@ Use the version helper before tagging a release:
 scripts/set-version.sh 0.2.0 2
 ```
 
-GitHub release tags should use `v<version>`, such as `v0.2.0`. The release workflow validates the tag against `VERSION` and the Xcode `MARKETING_VERSION`.
+Publish a release with:
 
-Public downloadable builds should be signed with a Developer ID Application certificate and notarized by Apple. Configure the Apple signing and notarization secrets documented in `README.md` before publishing a release asset.
+```bash
+make release VERSION=0.2.0
+```
+
+The release workflow validates the tag against `VERSION` and the Xcode `MARKETING_VERSION`, then builds and ad-hoc signs the app using the same lightweight pattern as DailyPhotos.
 
 ## Provider Contributions
 

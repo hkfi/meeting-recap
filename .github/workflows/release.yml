@@ -1,157 +1,55 @@
 name: Release
 
 on:
-  release:
-    types: [published]
-  workflow_dispatch:
-    inputs:
-      version:
-        description: Version to validate and build, with or without a leading v
-        required: true
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
 
 jobs:
-  unsigned-build:
-    name: Build unsigned macOS app
-    runs-on: macos-14
-    if: github.event_name == 'workflow_dispatch'
-    permissions:
-      contents: read
-
+  build-and-release:
+    runs-on: macos-15
     steps:
-      - name: Check out repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Resolve version
         id: version
         shell: bash
         run: |
-          raw_version="${{ inputs.version }}"
-          version="${raw_version#v}"
+          version="${GITHUB_REF_NAME#v}"
           echo "version=$version" >> "$GITHUB_OUTPUT"
-          echo "raw_version=$raw_version" >> "$GITHUB_OUTPUT"
 
-      - name: Validate app version
-        run: scripts/verify-release-version.sh "${{ steps.version.outputs.raw_version }}"
+      - name: Verify release version
+        run: scripts/verify-release-version.sh "$GITHUB_REF_NAME"
 
-      - name: Install XcodeGen
+      - name: Install xcodegen
         run: brew install xcodegen
 
-      - name: Generate Xcode project
-        run: xcodegen generate
+      - name: Run tests
+        run: make test
 
       - name: Build
-        run: xcodebuild -project MeetingRecap.xcodeproj -scheme MeetingRecap -configuration Release -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO build
+        run: ./build.sh
 
-      - name: Package unsigned app
+      - name: Zip app bundle
         run: |
-          app_path="build/DerivedData/Build/Products/Release/MeetingRecap.app"
-          ditto -c -k --keepParent "$app_path" "MeetingRecap-${{ steps.version.outputs.version }}-unsigned-macOS.zip"
-
-      - name: Upload unsigned build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: MeetingRecap-${{ steps.version.outputs.version }}-unsigned
-          path: MeetingRecap-${{ steps.version.outputs.version }}-unsigned-macOS.zip
-
-  signed-release:
-    name: Build signed and notarized macOS app
-    runs-on: macos-14
-    if: github.event_name == 'release'
-    permissions:
-      contents: write
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Resolve release version
-        id: version
-        shell: bash
-        run: |
-          raw_version="${{ github.event.release.tag_name }}"
-          version="${raw_version#v}"
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-          echo "raw_version=$raw_version" >> "$GITHUB_OUTPUT"
-
-      - name: Validate app version matches GitHub release
-        run: scripts/verify-release-version.sh "${{ steps.version.outputs.raw_version }}"
-
-      - name: Install XcodeGen
-        run: brew install xcodegen
-
-      - name: Generate Xcode project
-        run: xcodegen generate
-
-      - name: Import Developer ID certificate
-        env:
-          CERTIFICATE_BASE64: ${{ secrets.APPLE_DEVELOPER_ID_CERTIFICATE_BASE64 }}
-          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_DEVELOPER_ID_CERTIFICATE_PASSWORD }}
-          KEYCHAIN_PASSWORD: ${{ secrets.APPLE_BUILD_KEYCHAIN_PASSWORD }}
-        run: |
-          if [[ -z "$CERTIFICATE_BASE64" || -z "$CERTIFICATE_PASSWORD" || -z "$KEYCHAIN_PASSWORD" ]]; then
-            echo "Developer ID signing secrets are not configured." >&2
-            exit 1
-          fi
-
-          certificate_path="$RUNNER_TEMP/developer-id.p12"
-          keychain_path="$RUNNER_TEMP/app-signing.keychain-db"
-
-          echo "$CERTIFICATE_BASE64" | base64 --decode > "$certificate_path"
-          security create-keychain -p "$KEYCHAIN_PASSWORD" "$keychain_path"
-          security set-keychain-settings -lut 21600 "$keychain_path"
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$keychain_path"
-          security import "$certificate_path" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$keychain_path"
-          security list-keychain -d user -s "$keychain_path"
-          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" "$keychain_path"
-
-      - name: Build release app
-        run: xcodebuild -project MeetingRecap.xcodeproj -scheme MeetingRecap -configuration Release -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO build
-
-      - name: Sign app with Developer ID
-        env:
-          DEVELOPER_ID_APPLICATION: ${{ secrets.APPLE_DEVELOPER_ID_APPLICATION }}
-        run: |
-          if [[ -z "$DEVELOPER_ID_APPLICATION" ]]; then
-            echo "APPLE_DEVELOPER_ID_APPLICATION is not configured." >&2
-            exit 1
-          fi
-          app_path="build/DerivedData/Build/Products/Release/MeetingRecap.app"
-          codesign --force --deep --options runtime --timestamp --sign "$DEVELOPER_ID_APPLICATION" "$app_path"
-          codesign --verify --deep --strict --verbose=2 "$app_path"
-
-      - name: Submit app for notarization
-        env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
-        run: |
-          if [[ -z "$APPLE_ID" || -z "$APPLE_TEAM_ID" || -z "$APPLE_APP_SPECIFIC_PASSWORD" ]]; then
-            echo "Apple notarization secrets are not configured." >&2
-            exit 1
-          fi
-
-          app_path="build/DerivedData/Build/Products/Release/MeetingRecap.app"
-          notarization_zip="$RUNNER_TEMP/MeetingRecap-notarization.zip"
-          ditto -c -k --keepParent "$app_path" "$notarization_zip"
-          xcrun notarytool submit "$notarization_zip" \
-            --apple-id "$APPLE_ID" \
-            --team-id "$APPLE_TEAM_ID" \
-            --password "$APPLE_APP_SPECIFIC_PASSWORD" \
-            --wait
-          xcrun stapler staple "$app_path"
-          spctl --assess --type execute --verbose "$app_path"
-
-      - name: Package notarized app
-        run: |
-          app_path="build/DerivedData/Build/Products/Release/MeetingRecap.app"
-          ditto -c -k --keepParent "$app_path" "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip"
+          cd .build
+          ditto -c -k --sequesterRsrc --keepParent MeetingRecap.app "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip"
           shasum -a 256 "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip" > "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip.sha256"
 
-      - name: Upload signed release assets
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release upload "${{ steps.version.outputs.raw_version }}" \
-            "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip" \
-            "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip.sha256" \
-            --clobber
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            .build/MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip
+            .build/MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip.sha256
+          generate_release_notes: true
+          body: |
+            Meeting Recap ${{ steps.version.outputs.version }}.
+
+            This release follows the same lightweight distribution pattern as DailyPhotos: the app is ad-hoc signed and packaged with ditto so the macOS app bundle metadata is preserved.
+
+            On first launch, macOS may still ask you to confirm opening an app downloaded from the internet. If needed, right-click MeetingRecap.app and choose Open, or use System Settings > Privacy & Security > Open Anyway.
