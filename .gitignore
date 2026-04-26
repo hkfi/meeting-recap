@@ -21,7 +21,7 @@ summarize-prompt.md
 # Model files
 *.bin
 *.gguf
-models/
+/models/
 
 # Secrets
 .env
