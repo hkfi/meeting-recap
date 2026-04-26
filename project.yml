@@ -1,0 +1,50 @@
+name: MeetingRecap
+options:
+  bundleIdPrefix: dev.meetingrecap
+  createIntermediateGroups: true
+  deploymentTarget:
+    macOS: "14.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+targets:
+  MeetingRecap:
+    type: application
+    platform: macOS
+    sources:
+      - MeetingRecap
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.meetingrecap.app
+        PRODUCT_MODULE_NAME: MeetingRecap
+        PRODUCT_NAME: MeetingRecap
+        INFOPLIST_FILE: MeetingRecap/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        MARKETING_VERSION: 0.1.0
+        CURRENT_PROJECT_VERSION: 1
+  MeetingRecapTests:
+    type: bundle.unit-test
+    platform: macOS
+    hostApplication: MeetingRecap
+    sources:
+      - MeetingRecapTests
+    dependencies:
+      - target: MeetingRecap
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.meetingrecap.tests
+        PRODUCT_MODULE_NAME: MeetingRecapTests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  MeetingRecap:
+    build:
+      targets:
+        MeetingRecap: all
+        MeetingRecapTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - MeetingRecapTests

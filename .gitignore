@@ -1,0 +1,27 @@
+.DS_Store
+DerivedData/
+build/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Local recordings and generated meeting artifacts
+Meeting Recap/
+Documents/Meeting Recap/
+*.m4a
+*.wav
+*.mov
+transcript.md
+summary.md
+metadata.json
+summarize-prompt.md
+
+# Model files
+*.bin
+*.gguf
+models/
+
+# Secrets
+.env
+.env.*

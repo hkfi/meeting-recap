@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14374935CABBADCD24F0EEC8 /* MeetingMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD209C371981A8A583B0ACA /* MeetingMetadata.swift */; };
+		1E70BC6E4EF30E78277C68BE /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05837484897C12F961E9025E /* KeychainService.swift */; };
+		35DCEFEAC2B8F06CAAF1B4A2 /* SummarizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A04A3A3FFC89494B9A1C79 /* SummarizationService.swift */; };
+		372667AE8FCE499C6559ACF2 /* OpenAIAPISummarizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E4B46E0053582655F62839 /* OpenAIAPISummarizationService.swift */; };
+		444F37DEA03A88D824AF8A5F /* MacWhisperTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B0E74A5A19C04F2014FF5 /* MacWhisperTranscriptionService.swift */; };
+		45993044489DB6FC206DD9CA /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1439E5041333340B3FEEE8E /* SettingsStore.swift */; };
+		4D4FAA5DEE4160BA3EB7114D /* OllamaSummarizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E388E627C3DD640E80315 /* OllamaSummarizationService.swift */; };
+		556993F59962F8B9AC140F60 /* AudioRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761050F1AFB1AA95EE0A8D27 /* AudioRecordingService.swift */; };
+		58F53E2E63D6EC9CA56ED59C /* ExternalCommandRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF8757A4A5B7B5634E2F1D /* ExternalCommandRunner.swift */; };
+		626777406BC89CC251446C39 /* SummaryPromptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D581BC8C4D5379CEE62C20C /* SummaryPromptBuilder.swift */; };
+		63359FC6EE226C2201E3A170 /* ManualSummarizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67221649B305BE7719A8A3DD /* ManualSummarizationService.swift */; };
+		6552611C4A17F0D38BF532F2 /* RecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CADF9930F7CFED65F70910 /* RecordingManager.swift */; };
+		71CB8C2660ECB6F518506525 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD8F76FFD6B640D03590A1E /* AppState.swift */; };
+		896FD00BEF9F1A21A8AE23B5 /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4C4B882E58B171D818C176 /* TranscriptionService.swift */; };
+		9089FBCCF5C281E222F79580 /* SystemAudioCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675226E3144A5DB375E327D3 /* SystemAudioCaptureService.swift */; };
+		916C603FAA26801C51306946 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97643B84C9ABA490EE484E74 /* AppEnvironment.swift */; };
+		92714C7CE4D5FCC268AC38A6 /* CodexCLISummarizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ECFFC193E1968E60A7546E /* CodexCLISummarizationService.swift */; };
+		9B1866C8C7C3F89676414229 /* WhisperCppTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECBE2EFA903C6D4343E7F33 /* WhisperCppTranscriptionService.swift */; };
+		9C326F64BECD71929A513ADA /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC7F21F38EAD5CD6D46031 /* FileStorageService.swift */; };
+		A22AEF0F64D4E2B51A1C1217 /* AudioExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E214CAA5557C890F1ABB4FB8 /* AudioExportService.swift */; };
+		A5C26272DA0FCB340C6852BC /* RecordingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F4A2CE184ED85AA970727E /* RecordingState.swift */; };
+		A6D9A4099FA2C7D80C037DA5 /* ScreenCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D34BBAC3C78F21EDD07FC /* ScreenCaptureService.swift */; };
+		A826671A8FB25D64B02CF5AA /* PermissionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E87F532AC5A572682C737C /* PermissionsService.swift */; };
+		C0EE4E598C6295A120E0BB2B /* MeetingRecapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D1D83C921AB7189481E9BC /* MeetingRecapApp.swift */; };
+		D6B87B1251C7F3BBDD2132F6 /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264869BEF127A8713495289D /* MenuBarContentView.swift */; };
+		E2289E1407075592DCD559A6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602B91F5C7E79BE1DC239ACB /* SettingsView.swift */; };
+		FA210808E7084930F12C53DB /* SummaryPromptBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313057B0507947B5A0727D36 /* SummaryPromptBuilderTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6040CBBA3F1F999F3C42416 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2FCFE923E108299FEC5DA9A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0450DC0CBD99878D9679CEB;
+			remoteInfo = MeetingRecap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05837484897C12F961E9025E /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		0CFF8757A4A5B7B5634E2F1D /* ExternalCommandRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalCommandRunner.swift; sourceTree = "<group>"; };
+		10E87F532AC5A572682C737C /* PermissionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsService.swift; sourceTree = "<group>"; };
+		13D1D83C921AB7189481E9BC /* MeetingRecapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingRecapApp.swift; sourceTree = "<group>"; };
+		1C4C4B882E58B171D818C176 /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
+		264869BEF127A8713495289D /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
+		313057B0507947B5A0727D36 /* SummaryPromptBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPromptBuilderTests.swift; sourceTree = "<group>"; };
+		48E4B46E0053582655F62839 /* OpenAIAPISummarizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAPISummarizationService.swift; sourceTree = "<group>"; };
+		4BD8F76FFD6B640D03590A1E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		50CC7F21F38EAD5CD6D46031 /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
+		602B91F5C7E79BE1DC239ACB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		67221649B305BE7719A8A3DD /* ManualSummarizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSummarizationService.swift; sourceTree = "<group>"; };
+		675226E3144A5DB375E327D3 /* SystemAudioCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAudioCaptureService.swift; sourceTree = "<group>"; };
+		74A04A3A3FFC89494B9A1C79 /* SummarizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizationService.swift; sourceTree = "<group>"; };
+		761050F1AFB1AA95EE0A8D27 /* AudioRecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingService.swift; sourceTree = "<group>"; };
+		78F4A2CE184ED85AA970727E /* RecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingState.swift; sourceTree = "<group>"; };
+		7D581BC8C4D5379CEE62C20C /* SummaryPromptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPromptBuilder.swift; sourceTree = "<group>"; };
+		7ECBE2EFA903C6D4343E7F33 /* WhisperCppTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperCppTranscriptionService.swift; sourceTree = "<group>"; };
+		836C0C971E2B18371C1944BA /* MeetingRecapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetingRecapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		845B0E74A5A19C04F2014FF5 /* MacWhisperTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacWhisperTranscriptionService.swift; sourceTree = "<group>"; };
+		97643B84C9ABA490EE484E74 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		980FFE062DF7B00FA60B5310 /* MeetingRecap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingRecap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1439E5041333340B3FEEE8E /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		B4ECFFC193E1968E60A7546E /* CodexCLISummarizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexCLISummarizationService.swift; sourceTree = "<group>"; };
+		CE3E319CBE9E4BC0EAE5D9E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D46D34BBAC3C78F21EDD07FC /* ScreenCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCaptureService.swift; sourceTree = "<group>"; };
+		DBD209C371981A8A583B0ACA /* MeetingMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingMetadata.swift; sourceTree = "<group>"; };
+		E10E388E627C3DD640E80315 /* OllamaSummarizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OllamaSummarizationService.swift; sourceTree = "<group>"; };
+		E214CAA5557C890F1ABB4FB8 /* AudioExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioExportService.swift; sourceTree = "<group>"; };
+		F8CADF9930F7CFED65F70910 /* RecordingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1ECDB8D17B0FDA9A672F49E4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E214CAA5557C890F1ABB4FB8 /* AudioExportService.swift */,
+				761050F1AFB1AA95EE0A8D27 /* AudioRecordingService.swift */,
+				B4ECFFC193E1968E60A7546E /* CodexCLISummarizationService.swift */,
+				0CFF8757A4A5B7B5634E2F1D /* ExternalCommandRunner.swift */,
+				50CC7F21F38EAD5CD6D46031 /* FileStorageService.swift */,
+				05837484897C12F961E9025E /* KeychainService.swift */,
+				845B0E74A5A19C04F2014FF5 /* MacWhisperTranscriptionService.swift */,
+				67221649B305BE7719A8A3DD /* ManualSummarizationService.swift */,
+				E10E388E627C3DD640E80315 /* OllamaSummarizationService.swift */,
+				48E4B46E0053582655F62839 /* OpenAIAPISummarizationService.swift */,
+				10E87F532AC5A572682C737C /* PermissionsService.swift */,
+				F8CADF9930F7CFED65F70910 /* RecordingManager.swift */,
+				D46D34BBAC3C78F21EDD07FC /* ScreenCaptureService.swift */,
+				A1439E5041333340B3FEEE8E /* SettingsStore.swift */,
+				74A04A3A3FFC89494B9A1C79 /* SummarizationService.swift */,
+				675226E3144A5DB375E327D3 /* SystemAudioCaptureService.swift */,
+				1C4C4B882E58B171D818C176 /* TranscriptionService.swift */,
+				7ECBE2EFA903C6D4343E7F33 /* WhisperCppTranscriptionService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		23117EDBCD3FA9E505F4153C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DBD209C371981A8A583B0ACA /* MeetingMetadata.swift */,
+				78F4A2CE184ED85AA970727E /* RecordingState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		54710E4B26E4EA4B72872C4A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4BD8F76FFD6B640D03590A1E /* AppState.swift */,
+				13D1D83C921AB7189481E9BC /* MeetingRecapApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		9509E0B6BB6014B3F72459EF = {
+			isa = PBXGroup;
+			children = (
+				B690C022375419117FB160AE /* MeetingRecap */,
+				D584CF7DD945916D927AF9A5 /* MeetingRecapTests */,
+				CE91E8401B410ECE04A4B8F6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B690C022375419117FB160AE /* MeetingRecap */ = {
+			isa = PBXGroup;
+			children = (
+				CE3E319CBE9E4BC0EAE5D9E6 /* Info.plist */,
+				54710E4B26E4EA4B72872C4A /* App */,
+				23117EDBCD3FA9E505F4153C /* Models */,
+				1ECDB8D17B0FDA9A672F49E4 /* Services */,
+				EFF9C23B984EB2C87556831F /* UI */,
+				DB35DAFB5D197891743691AF /* Utilities */,
+			);
+			path = MeetingRecap;
+			sourceTree = "<group>";
+		};
+		CE91E8401B410ECE04A4B8F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				980FFE062DF7B00FA60B5310 /* MeetingRecap.app */,
+				836C0C971E2B18371C1944BA /* MeetingRecapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D584CF7DD945916D927AF9A5 /* MeetingRecapTests */ = {
+			isa = PBXGroup;
+			children = (
+				313057B0507947B5A0727D36 /* SummaryPromptBuilderTests.swift */,
+			);
+			path = MeetingRecapTests;
+			sourceTree = "<group>";
+		};
+		DB35DAFB5D197891743691AF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				97643B84C9ABA490EE484E74 /* AppEnvironment.swift */,
+				7D581BC8C4D5379CEE62C20C /* SummaryPromptBuilder.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		EFF9C23B984EB2C87556831F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				264869BEF127A8713495289D /* MenuBarContentView.swift */,
+				602B91F5C7E79BE1DC239ACB /* SettingsView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D37315B8285B057BB241776 /* MeetingRecapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30290400AF364CA7CD2932B3 /* Build configuration list for PBXNativeTarget "MeetingRecapTests" */;
+			buildPhases = (
+				9601ED4778306F7D07EE1781 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94A8EF4EE12E2D422574A8C8 /* PBXTargetDependency */,
+			);
+			name = MeetingRecapTests;
+			packageProductDependencies = (
+			);
+			productName = MeetingRecapTests;
+			productReference = 836C0C971E2B18371C1944BA /* MeetingRecapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D0450DC0CBD99878D9679CEB /* MeetingRecap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE042BF0398FC7A27BC2731F /* Build configuration list for PBXNativeTarget "MeetingRecap" */;
+			buildPhases = (
+				34F31FF9E5CB9FC7235D3979 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MeetingRecap;
+			packageProductDependencies = (
+			);
+			productName = MeetingRecap;
+			productReference = 980FFE062DF7B00FA60B5310 /* MeetingRecap.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2FCFE923E108299FEC5DA9A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = A045E9D9378F819CBFBE2C76 /* Build configuration list for PBXProject "MeetingRecap" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9509E0B6BB6014B3F72459EF;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CE91E8401B410ECE04A4B8F6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0450DC0CBD99878D9679CEB /* MeetingRecap */,
+				6D37315B8285B057BB241776 /* MeetingRecapTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		34F31FF9E5CB9FC7235D3979 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916C603FAA26801C51306946 /* AppEnvironment.swift in Sources */,
+				71CB8C2660ECB6F518506525 /* AppState.swift in Sources */,
+				A22AEF0F64D4E2B51A1C1217 /* AudioExportService.swift in Sources */,
+				556993F59962F8B9AC140F60 /* AudioRecordingService.swift in Sources */,
+				92714C7CE4D5FCC268AC38A6 /* CodexCLISummarizationService.swift in Sources */,
+				58F53E2E63D6EC9CA56ED59C /* ExternalCommandRunner.swift in Sources */,
+				9C326F64BECD71929A513ADA /* FileStorageService.swift in Sources */,
+				1E70BC6E4EF30E78277C68BE /* KeychainService.swift in Sources */,
+				444F37DEA03A88D824AF8A5F /* MacWhisperTranscriptionService.swift in Sources */,
+				63359FC6EE226C2201E3A170 /* ManualSummarizationService.swift in Sources */,
+				14374935CABBADCD24F0EEC8 /* MeetingMetadata.swift in Sources */,
+				C0EE4E598C6295A120E0BB2B /* MeetingRecapApp.swift in Sources */,
+				D6B87B1251C7F3BBDD2132F6 /* MenuBarContentView.swift in Sources */,
+				4D4FAA5DEE4160BA3EB7114D /* OllamaSummarizationService.swift in Sources */,
+				372667AE8FCE499C6559ACF2 /* OpenAIAPISummarizationService.swift in Sources */,
+				A826671A8FB25D64B02CF5AA /* PermissionsService.swift in Sources */,
+				6552611C4A17F0D38BF532F2 /* RecordingManager.swift in Sources */,
+				A5C26272DA0FCB340C6852BC /* RecordingState.swift in Sources */,
+				A6D9A4099FA2C7D80C037DA5 /* ScreenCaptureService.swift in Sources */,
+				45993044489DB6FC206DD9CA /* SettingsStore.swift in Sources */,
+				E2289E1407075592DCD559A6 /* SettingsView.swift in Sources */,
+				35DCEFEAC2B8F06CAAF1B4A2 /* SummarizationService.swift in Sources */,
+				626777406BC89CC251446C39 /* SummaryPromptBuilder.swift in Sources */,
+				9089FBCCF5C281E222F79580 /* SystemAudioCaptureService.swift in Sources */,
+				896FD00BEF9F1A21A8AE23B5 /* TranscriptionService.swift in Sources */,
+				9B1866C8C7C3F89676414229 /* WhisperCppTranscriptionService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9601ED4778306F7D07EE1781 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA210808E7084930F12C53DB /* SummaryPromptBuilderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94A8EF4EE12E2D422574A8C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0450DC0CBD99878D9679CEB /* MeetingRecap */;
+			targetProxy = F6040CBBA3F1F999F3C42416 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D36D46DFD427196C79A6F5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		A21FE184D6BE81BB693ABDE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.meetingrecap.tests;
+				PRODUCT_MODULE_NAME = MeetingRecapTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeetingRecap.app/Contents/MacOS/MeetingRecap";
+			};
+			name = Release;
+		};
+		CDB7EB9154E543FCF8180182 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MeetingRecap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.meetingrecap.app;
+				PRODUCT_MODULE_NAME = MeetingRecap;
+				PRODUCT_NAME = MeetingRecap;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D3FBD3A2FA594895C36239DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		F013B3C05618A9D02B99044C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MeetingRecap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.meetingrecap.app;
+				PRODUCT_MODULE_NAME = MeetingRecap;
+				PRODUCT_NAME = MeetingRecap;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F5C0D6F09DCED86120A9DC6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.meetingrecap.tests;
+				PRODUCT_MODULE_NAME = MeetingRecapTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeetingRecap.app/Contents/MacOS/MeetingRecap";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30290400AF364CA7CD2932B3 /* Build configuration list for PBXNativeTarget "MeetingRecapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5C0D6F09DCED86120A9DC6D /* Debug */,
+				A21FE184D6BE81BB693ABDE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A045E9D9378F819CBFBE2C76 /* Build configuration list for PBXProject "MeetingRecap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3FBD3A2FA594895C36239DC /* Debug */,
+				1D36D46DFD427196C79A6F5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DE042BF0398FC7A27BC2731F /* Build configuration list for PBXNativeTarget "MeetingRecap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F013B3C05618A9D02B99044C /* Debug */,
+				CDB7EB9154E543FCF8180182 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2FCFE923E108299FEC5DA9A /* Project object */;
+}
