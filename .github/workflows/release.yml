@@ -15,13 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Resolve version
-        id: version
-        shell: bash
-        run: |
-          version="${GITHUB_REF_NAME#v}"
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-
       - name: Verify release version
         run: scripts/verify-release-version.sh "$GITHUB_REF_NAME"
 
@@ -37,19 +30,10 @@ jobs:
       - name: Zip app bundle
         run: |
           cd .build
-          ditto -c -k --sequesterRsrc --keepParent MeetingRecap.app "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip"
-          shasum -a 256 "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip" > "MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip.sha256"
+          ditto -c -k --sequesterRsrc --keepParent MeetingRecap.app MeetingRecap.app.zip
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            .build/MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip
-            .build/MeetingRecap-${{ steps.version.outputs.version }}-macOS.zip.sha256
+          files: .build/MeetingRecap.app.zip
           generate_release_notes: true
-          body: |
-            Meeting Recap ${{ steps.version.outputs.version }}.
-
-            This release follows the same lightweight distribution pattern as DailyPhotos: the app is ad-hoc signed and packaged with ditto so the macOS app bundle metadata is preserved.
-
-            On first launch, macOS may still ask you to confirm opening an app downloaded from the internet. If needed, right-click MeetingRecap.app and choose Open, or use System Settings > Privacy & Security > Open Anyway.

@@ -73,10 +73,6 @@ make release VERSION=0.2.0
 
 GitHub Actions builds the app, ad-hoc signs it, packages it with `ditto --sequesterRsrc --keepParent`, and creates a GitHub release with the zip attached.
 
-### macOS Gatekeeper
-
-Meeting Recap follows the same distribution approach as DailyPhotos: it is ad-hoc signed, but not Developer ID notarized. macOS may still ask users to confirm first launch for an app downloaded from the internet. If needed, right-click `MeetingRecap.app` and choose Open, or use System Settings > Privacy & Security > Open Anyway.
-
 ## Audio Conversion
 
 Meeting Recap detects `ffmpeg` in:
