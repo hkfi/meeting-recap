@@ -72,6 +72,23 @@ git push origin v0.2.0
 
 When a GitHub release is published, `.github/workflows/release.yml` reads the release tag, strips the leading `v`, and verifies it matches both `VERSION` and `MARKETING_VERSION` before building the app.
 
+
+### Signed Downloads
+
+Public macOS downloads need Developer ID signing and Apple notarization. Without that, Gatekeeper may show "Apple could not verify this app is free of malware."
+
+Configure these GitHub Actions secrets before publishing a downloadable release:
+
+- `APPLE_DEVELOPER_ID_CERTIFICATE_BASE64`: base64-encoded `.p12` Developer ID Application certificate.
+- `APPLE_DEVELOPER_ID_CERTIFICATE_PASSWORD`: password for the `.p12` file.
+- `APPLE_BUILD_KEYCHAIN_PASSWORD`: temporary CI keychain password.
+- `APPLE_DEVELOPER_ID_APPLICATION`: signing identity, for example `Developer ID Application: Example, Inc. (TEAMID)`.
+- `APPLE_ID`: Apple ID used for notarization.
+- `APPLE_TEAM_ID`: Apple Developer Team ID.
+- `APPLE_APP_SPECIFIC_PASSWORD`: app-specific password for notarization.
+
+The release workflow signs with hardened runtime, submits the app to Apple notarization, staples the ticket, verifies Gatekeeper assessment, and uploads the notarized zip as a release asset. Unsigned workflow-dispatch builds are artifacts only and should not be attached to public releases.
+
 ## Audio Conversion
 
 Meeting Recap detects `ffmpeg` in:

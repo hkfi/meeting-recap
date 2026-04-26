@@ -29,6 +29,8 @@ scripts/set-version.sh 0.2.0 2
 
 GitHub release tags should use `v<version>`, such as `v0.2.0`. The release workflow validates the tag against `VERSION` and the Xcode `MARKETING_VERSION`.
 
+Public downloadable builds should be signed with a Developer ID Application certificate and notarized by Apple. Configure the Apple signing and notarization secrets documented in `README.md` before publishing a release asset.
+
 ## Provider Contributions
 
 Provider implementations should:
